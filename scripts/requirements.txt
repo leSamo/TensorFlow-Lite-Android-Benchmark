@@ -1,0 +1,3 @@
+tensorflow==2.8.0
+tflite_support_nightly==0.3.0.dev20211219
+tflite_support==0.3.1

@@ -1,0 +1,23 @@
+<resources>
+    <string name="tfe_ic_app_name" translation_description="Image Classification demo app [CHAR_LIMIT=40]">TF Lite Benchmark</string>
+    <string name="tfe_ic_camera_error" translation_description="Error regarding camera support[CHAR_LIMIT=40]">This device doesn\'t support Camera2 API.</string>
+    <string name="tfe_ic_gpu_quant_error" translation_description="Error regarding GPU support for Quant models[CHAR_LIMIT=60]">GPU does not yet supported quantized models.</string>
+    <string name="tfe_ic_model" translatable="false">Model:</string>
+    <string-array name="tfe_ic_models" translatable="false">
+        <item>EfficientNetB0_224_Q0_M</item>
+        <item>MobileNetV2_96_Q0_M</item>
+        <item>MobileNetV2_128_Q0_M</item>
+        <item>MobileNetV2_160_Q0_M</item>
+        <item>MobileNetV2_224_Q0_M</item>
+        <item>MobileNetV2_224_Q1_M</item>
+        <item>MobileNetV2_224_Q2_M</item>
+        <item>NASNetMobile_224_Q0_M</item>
+    </string-array>
+
+    <string name="tfe_ic_device" translatable="false">Device:</string>
+    <string-array name="tfe_ic_devices" translatable="false">
+        <item>CPU</item>
+        <item>GPU</item>
+        <item>NNAPI</item>
+    </string-array>
+</resources>
