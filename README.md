@@ -1,3 +1,15 @@
+# TensorFlow Lite Android Benchmark
+![Example image](https://i.imgur.com/S0esLtK.jpg)
+
+
+
+Set of tools to benchmark performance of TensorFlow image classification networks on Android devices.
+
+Folder `android/` contains Android app project.
+Folder `scripts/` contains Python scripts for converting existing TensorFlow models to TensorFlow Lite models embeddable into the Android application.
+
+Extends official [TensorFlow Android example](https://github.com/tensorflow/examples/tree/master/lite/examples/image_classification/android) and adds new models and functionality to benchmark performance.
+
 # Generating example networks
 Use script `generate.py`
 
@@ -42,5 +54,3 @@ Example:
 1. `generator.py` generates `MobileNetV2_224.h5` - `MobileNetV2` with input size of `224x224`
 2. `convert.py` quantizatizes and converts this model to TF Lite format and appends Q followed by quantization level to filename `MobileNetV2_224_Q1.tflite` - quantization level of 1 (see quantization levels above)
 3. `setMetadata.py` adds metadata to the model and appends `_M` to filename `MobileNetV2_224_Q1_M.tflite`
-
-
