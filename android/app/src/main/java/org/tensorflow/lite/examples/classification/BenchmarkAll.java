@@ -90,7 +90,7 @@ public class BenchmarkAll extends Activity {
 
     private void showResultDialog() {
         String table = "";
-        Classifier.Model model = Classifier.Model.EFFICIENTNETB0_224_Q0_M;
+        Classifier.Model model = Classifier.Model.MOBILENETV2_96_Q0_M;
 
         for (int i = 0; i < networkCount; i++) {
             double averageInferenceTime = IntStream.of(inferenceTimes[i]).average().orElse(Double.NaN);

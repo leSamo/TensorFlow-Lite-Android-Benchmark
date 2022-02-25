@@ -35,13 +35,19 @@ Usage: `python convert.py -i <input file> [-o <output file>] [-q <quantization l
 - `-q 1` - dynamic range quantiation
 - `-q 2` - full integer quantization
 
+## (optional) Evaluate TF Lite model
+Use script `interpret.py`
+
+Evaluates TFLite image classification model
+Usage: `python interpret.py -m <path to model> [-s <samples count>]`
+
 ## Insert metadata into model
 Use script `setMetadata.py`
 
 Inserts metadata into tflite model
 Usage: `python setMetadata.py`, then enter information after prompted by terminal
 
-## Verify model metadata (optional)
+## (optional) Verify model metadata 
 Use script `getMetadata.py`
 
 Prints metadata from TFLite model file

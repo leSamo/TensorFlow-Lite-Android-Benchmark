@@ -101,7 +101,7 @@ public abstract class CameraActivity extends AppCompatActivity
   private Button benchmarkAllImageView;
   private Spinner modelSpinner;
 
-  private Model model = Model.EFFICIENTNETB0_224_Q0_M;
+  private Model model = Model.MOBILENETV2_96_Q0_M;
   private Device device = Device.CPU;
   private int numThreads = 1;
 

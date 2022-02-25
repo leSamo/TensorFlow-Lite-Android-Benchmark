@@ -4,6 +4,7 @@
 import os, sys, getopt
 import tensorflow as tf
 import numpy as np
+import tensorflow_datasets as tfds
 
 # available quantization levels
 NO_QUANTIZATION = 0
@@ -38,6 +39,8 @@ assert INPUT_MODEL_PATH is not None, "Missing -i option with input model path"
 if OUTPUT_MODEL_PATH is None:
 	OUTPUT_MODEL_PATH = os.path.splitext(INPUT_MODEL_PATH)[0] + '_Q' + str(QUANTIZATION_LEVEL) + '.tflite'
 
+ds = tfds.load('imagenet_v2')
+
 # load model from file
 model = tf.keras.models.load_model(INPUT_MODEL_PATH)
 
@@ -49,9 +52,13 @@ if QUANTIZATION_LEVEL == DYNAMIC_RANGE_QUANTIZATION:
 	converter.optimizations = [tf.lite.Optimize.DEFAULT]
 elif QUANTIZATION_LEVEL == FULL_INTEGER_QUANTIZATION:
 	def representative_dataset():
-		for _ in range(100):
-			data = np.random.rand(*[1 if v is None else v for v in model.input.shape])
-			yield [data.astype(np.float32)]
+		for i in range(100):
+			img = list(ds['test'])[i]['image']
+			ratio = 225.0 / min(np.shape(img)[0:2])
+			resized = tf.image.resize(img, [int(np.shape(img)[0] * ratio), int(np.shape(img)[1] * ratio)], preserve_aspect_ratio=True)
+			cropped = tf.image.random_crop(resized, (224,224,3))
+			preprocessed = np.array([tf.keras.applications.mobilenet_v2.preprocess_input(cropped)])
+			yield [preprocessed.astype(np.float32)]
 			
 	converter.optimizations = [tf.lite.Optimize.DEFAULT]
 	converter.representative_dataset = representative_dataset

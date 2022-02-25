@@ -54,7 +54,6 @@ public abstract class Classifier {
 
   /** The model type used for classification. */
   public enum Model {
-    EFFICIENTNETB0_224_Q0_M,
     MOBILENETV2_96_Q0_M,
     MOBILENETV2_128_Q0_M,
     MOBILENETV2_160_Q0_M,
@@ -117,9 +116,7 @@ public abstract class Classifier {
    */
   public static Classifier create(Activity activity, Model model, Device device, int numThreads)
       throws IOException {
-    if (model == Model.EFFICIENTNETB0_224_Q0_M) {
-      return new Classifier_EfficientNetB0_224_Q0_M_(activity, device, numThreads);
-    } else if (model == Model.MOBILENETV2_96_Q0_M) {
+    if (model == Model.MOBILENETV2_96_Q0_M) {
       return new Classifier_MobileNetV2_96_Q0_M_(activity, device, numThreads);
     } else if (model == Model.MOBILENETV2_128_Q0_M) {
       return new Classifier_MobileNetV2_128_Q0_M_(activity, device, numThreads);
