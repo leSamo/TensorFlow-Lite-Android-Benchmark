@@ -8,6 +8,8 @@ import sys
 
 # TODO: Support any resolution, not only 224x224
 
+PREPROCESS_FUNCTION = tf.keras.applications.mobilenet_v2.preprocess_input
+
 sampleCount = 1000;
 
 # parse command line arguments
@@ -51,7 +53,7 @@ for sampleIndex, sample in enumerate(list(ds['test'])):
 	ratio = 225.0 / min(np.shape(img)[0:2])
 	resized = tf.image.resize(img, [int(np.shape(img)[0] * ratio), int(np.shape(img)[1] * ratio)], preserve_aspect_ratio=True)
 	cropped = tf.image.random_crop(resized, (224,224,3))
-	preprocessed = tf.keras.applications.mobilenet_v2.preprocess_input(cropped)
+	preprocessed = PREPROCESS_FUNCTION(cropped)
 
 	interpreter.set_tensor(input_details[0]['index'], [preprocessed])
 	interpreter.invoke()
@@ -66,7 +68,7 @@ for sampleIndex, sample in enumerate(list(ds['test'])):
 		if top5indices[0] == expectedLabel:
 			top1 += 1
 
-	print(f"Progress: {sampleIndex + 1}/{sampleCount}", end="\r")
+	print(f"Progress: {sampleIndex + 1}/{sampleCount} (top 1: {top1}, top 5: {top5})", end="\r")
 
 	"""
 	preds = tf.keras.applications.mobilenet_v2.decode_predictions(output_data, top=5)

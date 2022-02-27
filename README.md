@@ -28,12 +28,13 @@ Use script `convert.py`
 
 Converts TensorFlow model in h5 format to TensorFlow Lite format with optional dynamic range quantization
 
-Usage: `python convert.py -i <input file> [-o <output file>] [-q <quantization level>]`
+Usage: `python convert.py -i <input file> [-o <output file>] [-q <quantization level>] [-s <samples count>]`
 
 ### Quantization levels:
 - `-q 0` - no quantization (default)
 - `-q 1` - dynamic range quantiation
 - `-q 2` - full integer quantization
+    - this quantization level requires model to be calibrated using example input images, use `-s` parameter to control how many sample images are used for the calibration
 
 ## (optional) Evaluate TF Lite model
 Use script `interpret.py`
